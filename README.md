@@ -1,35 +1,27 @@
-# 🧪 dbc-prep-xobin — Preparação para Testes Técnicos (Vem Ser DBC / Xobin)
+# 🧠 lógica-prep — Prática de Lógica e Raciocínio para Testes Técnicos
 
-Repositório de estudos para **provas técnicas estilo LeetCode/Xobin** (ex.: programa de estágio **Vem Ser DBC**). Os exercícios vêm do **Curso em Vídeo – Python (Gustavo Guanabara)**, **Mundo 1 (Fundamentos)** e **Mundo 2 (Estruturas de Controle)**, convertidos para o formato de programação competitiva — **função pura + casos de teste** — com suporte bilíngue:
+Banco de exercícios de **lógica, raciocínio e algoritmos** para treinar provas técnicas estilo **LeetCode/Xobin** (ex.: programa de estágio **Vem Ser DBC**).
 
+Cada exercício é convertido para o formato de **programação competitiva**: **função pura + casos de teste**, com suporte bilíngue:
 - **Python** → Pytest (`solution.py` + `test_solution.py`)
 - **TypeScript** → Vitest (`solution.ts` + `solution.test.ts`)
 
-Você escolhe a linguagem: implemente a função no stub e rode os testes. Os enunciados são os **reais** do curso.
+Você escolhe a linguagem: **implemente a função no stub e rode os testes localmente.**
 
 ## Estrutura
 
 ```
-dbc-prep-xobin/
-├── .github/workflows/tests.yml   # CI: roda pytest e vitest em push/PR
-├── mundo_1_fundamentos/
-│   └── ex001_deixar_pronto/
-│       ├── README.md             # descrição/spec do exercício (estilo competitivo)
-│       ├── solution.py           # stub Python
-│       ├── test_solution.py      # suíte Pytest (parametrize)
-│       ├── solution.ts           # stub TypeScript
-│       └── solution.test.ts      # suíte Vitest
-├── mundo_2_estruturas_de_controle/
-│   └── ex036_emprestimo_bancario/
-│       ├── README.md
-│       ├── solution.py
-│       ├── test_solution.py
-│       ├── solution.ts
-│       └── solution.test.ts
-├── package.json / tsconfig.json / vitest.config.ts   # TS
-├── requirements.txt / pytest.ini                     # Python
+lógica-prep/
+├── mundo_1_fundamentos/                # lote inicial: Curso em Vídeo (Guanabara), acessos 001-035
+│   └── ex001_ola_mundo/
+│       ├── README.md                   # spec do exercício (Descrição, Parâmetros, Retorno, Exemplos, Restrições)
+│       ├── solution.py + test_solution.py
+│       └── solution.ts + solution.test.ts
+├── mundo_2_estruturas_de_controle/     # Curso em Vídeo (Guanabara), exercícios 036-071
 └── README.md
 ```
+
+> Pode criar novas pastas temáticas (ex.: `logica/`, `algoritmos/`, `strings/`, `matematica/`) e adicionar qualquer exercício de lógica que quiser — é só seguir o mesmo padrão de pasta.
 
 ## Pré-requisitos
 
@@ -38,56 +30,55 @@ dbc-prep-xobin/
 
 ## Setup
 
-### Python
 ```bash
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
+# Python
+python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-```
 
-### TypeScript
-```bash
+# TypeScript
 npm install
 ```
 
-## Como rodar os testes
+## Rodar os testes (local)
 
-### Um exercício (Python)
 ```bash
-pytest mundo_1_fundamentos/ex001_deixar_pronto/
-```
+# Um exercício (Python)
+pytest mundo_1_fundamentos/ex001_ola_mundo/
 
-### Um exercício (TypeScript)
-```bash
-npx vitest run mundo_1_fundamentos/ex001_deixar_pronto/
-```
+# Um exercício (TypeScript)
+npx vitest run mundo_1_fundamentos/ex001_ola_mundo/
 
-### Todos (Python)
-```bash
+# Todos (Python)
 pytest
-```
 
-### Todos (TypeScript)
-```bash
-npm test        # ou: npx vitest run
+# Todos (TypeScript)
+npm test     # ou: npx vitest run
 ```
 
 ## Como usar (TDD)
 
-1. Abra o `README.md` do exercício e leia a spec (Descrição, Parâmetros, Retorno, Exemplos, Restrições).
+1. Leia o `README.md` do exercício (spec: Descrição, Parâmetros, Retorno, Exemplos, Restrições).
 2. Implemente a função no stub (`solution.py` ou `solution.ts`).
-3. Rode os testes do exercício para validar.
-4. Rode a suíte completa quando terminar.
+3. Rode os testes do exercício até ficarem verdes.
+4. Repita nos próximos.
 
-> Os exercícios interativos (input/print) do curso foram reorganizados como **funções puras** com parâmetros e retorno tipados. A entrada/saída de terminal fica fora da função testada.
+> Os exercícios interativos (input/print) foram reorganizados como **funções puras** e determinísticas — toda entrada vira parâmetro, toda saída vira retorno. A aleatoriedade e o I/O ficam fora da função testada.
 
-## Exercícios
+## Como adicionar um exercício novo
 
-### Mundo 1 — Fundamentos
-`ex001` … `ex035`
+Crie a pasta `exNNN_nome/` (ou pasta temática) com os 5 arquivos no padrão:
+- `README.md` — spec competitiva
+- `solution.py` — função pura tipada (stub)
+- `test_solution.py` — `@pytest.mark.parametrize` com casos padrão + edge
+- `solution.ts` — `export function nomeCamel(...)` (stub)
+- `solution.test.ts` — Vitest com os mesmos casos do pytest
 
-### Mundo 2 — Estruturas de Controle
-`ex036` … `ex071`
+## Exercícios atuais
+
+- **Mundo 1 — Fundamentos:** ex001 … ex035
+- **Mundo 2 — Estruturas de Controle:** ex036 … ex071
+
+(Fonte dos enunciados do lote inicial: **Curso em Vídeo — Gustavo Guanabara**.)
 
 ## Licença
 MIT
