@@ -1,0 +1,19 @@
+{
+  "name": "dbc-prep-xobin",
+  "version": "1.0.0",
+  "description": "Preparação para testes técnicos estilo LeetCode/Xobin (Vem Ser DBC) — exercícios do Curso em Vídeo (Guanabara) em Python e TypeScript, com testes automatizados (Pytest + Vitest).",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vitest": "^2.1.9"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

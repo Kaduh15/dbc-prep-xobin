@@ -1,0 +1,18 @@
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+*.egg-info/
+
+# Misc
+.DS_Store
+.vscode/
+.idea/
