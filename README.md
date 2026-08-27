@@ -18,6 +18,7 @@ lógica-prep/
 │       ├── solution.py + test_solution.py
 │       └── solution.ts + solution.test.ts
 ├── mundo_2_estruturas_de_controle/     # Curso em Vídeo (Guanabara), exercícios 036-071
+├── logica/                              # exercícios clássicos de lógica/raciocínio (FizzBuzz, Two Sum, palíndromo…)
 └── README.md
 ```
 
@@ -77,6 +78,7 @@ Crie a pasta `exNNN_nome/` (ou pasta temática) com os 5 arquivos no padrão:
 
 - **Mundo 1 — Fundamentos:** ex001 … ex035
 - **Mundo 2 — Estruturas de Controle:** ex036 … ex071
+- **Lógica clássica:** logica/ex01 … ex12 (FizzBuzz, palíndromo, anagrama, two sum, inverter string, contagem de caracteres, maior/menor, soma de dígitos, fatorial, fibonacci, primo, vogais)
 
 (Fonte dos enunciados do lote inicial: **Curso em Vídeo — Gustavo Guanabara**.)
 
