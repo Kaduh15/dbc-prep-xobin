@@ -1,3 +1,3 @@
 export function converterBase(numero: number, base: number): string {
-  throw new Error("NotImplemented");
+  throw new Error("Not implemented");
 }

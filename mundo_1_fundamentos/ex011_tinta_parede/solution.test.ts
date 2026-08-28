@@ -1,20 +1,18 @@
-import { describe, it, expect } from 'vitest';
-import { calcularTinta } from './solution';
+import { describe, it, expect } from "vitest";
+import { calcularTinta } from "./solution";
+
 
 describe('calcularTinta', () => {
-  it('parede 2x2', () => {
-    expect(calcularTinta(2, 2)).toEqual([4, 2]);
-  });
-
-  it('parede 7x4', () => {
-    expect(calcularTinta(7, 4)).toEqual([28, 14]);
-  });
-
-  it('área zero', () => {
-    expect(calcularTinta(0, 5)).toEqual([0, 0]);
-  });
-
-  it('dimensões decimais', () => {
-    expect(calcularTinta(2.5, 4)).toEqual([10, 5]);
+  it.each([
+    [[2, 2], [4, 2]],
+    [[7, 4], [28, 14]],
+    [[0, 5], [0, 0]],
+    [[2.5, 4], [10, 5]],
+    [[3, 3], [9, 4.5]],
+    [[4, 2.5], [10, 5]],
+    [[0.5, 0.5], [0.25, 0.125]],
+  ])("caso", (args: any[], esperado: any) => {
+    const resultado = calcularTinta(...(args as []));
+    expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));
   });
 });

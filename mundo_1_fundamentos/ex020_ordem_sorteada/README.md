@@ -14,15 +14,36 @@ O mesmo professor quer sortear a **ordem de apresentação** dos trabalhos de qu
 ```python
 ordem_apresentacao(["Ana", "Bia", "Caio", "Duda"], [1, 3, 0, 2])
 # ["Bia", "Duda", "Ana", "Caio"]
-
 ordem_apresentacao(["Ana", "Bia", "Caio", "Duda"], [0, 1, 2, 3])
 # ["Ana", "Bia", "Caio", "Duda"]
+ordem_apresentacao(["Ana"], [0])  # ["Ana"]
 ```
 
-## Restrições / Edge Cases
+## Edge Cases / Extremos
 - A aleatoriedade do embaralhamento fica **fora** da função; apenas a permutação é aplicada.
-- `indices` é uma permutação válida de `0..len(alunos)-1`.
+- Permutação identidade `[0,1,2,3]` e reversa `[3,2,1,0]` são cobertas.
+- Listas vazias `([], [])` retornam `[]` (caso extremo).
+- Casos adicionados: `([], []) → []`, `(["a","b","c"], [2,1,0]) → ["c","b","a"]`, `(["x","y"], [1,0]) → ["y","x"]`.
 
-## Assinaturas canônicas
+## Abordagem / Dica
+Compreensão de lista (Python) / `indices.map(i => alunos[i])` (TypeScript): para cada índice, pegue `alunos[i]`.
+
+## Complexidade
+Tempo O(n), espaço O(n), onde n = len(indices).
+
+## Assinaturas / Stub
 - **Python**: `ordem_apresentacao(alunos: list[str], indices: list[int]) -> list[str]`
 - **TypeScript**: `ordemApresentacao(alunos: string[], indices: number[]): string[]`
+
+Stub de partida (Python):
+```python
+def ordem_apresentacao(alunos: list[str], indices: list[int]) -> list[str]:
+    raise NotImplementedError
+```
+
+Stub de partida (TypeScript):
+```typescript
+export function ordemApresentacao(alunos: string[], indices: number[]): string[] {
+  throw new Error("Not implemented");
+}
+```

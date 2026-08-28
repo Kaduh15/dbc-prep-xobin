@@ -1,13 +1,13 @@
-# EX41 — Categoria de Natação
+# EX41 — Categoria de natação
 
 ## Descrição
-A Confederação Nacional de Natação precisa de um programa que, dado a idade do atleta, mostre sua categoria, de acordo com a tabela: até 9 anos → Mirim; até 14 anos → Infantil; até 19 anos → Junior; até 20 anos → Senior; acima de 20 anos → Master.
+A Confederação Nacional de Natação precisa de um programa que, dada a idade de um atleta, mostre sua categoria: **≤ 9** → `Mirim`; **≤ 14** → `Infantil`; **≤ 19** → `Junior`; **≤ 20** → `Senior`; **> 20** → `Master`.
 
 ## Parâmetros e Tipos
 - `idade` (int) — idade do atleta em anos.
 
 ## Retorno
-`str` — categoria conforme a tabela: `Mirim`, `Infantil`, `Junior`, `Senior` ou `Master`.
+`str` — `Mirim`, `Infantil`, `Junior`, `Senior` ou `Master`.
 
 ## Casos de Exemplo
 ```python
@@ -19,15 +19,28 @@ categoria_natacao(20) -> "Senior"
 categoria_natacao(25) -> "Master"
 ```
 
-## Restrições / Edge Cases
-- Faixas exatas: ≤9 `Mirim`; ≤14 `Infantil`; ≤19 `Junior`; ≤20 `Senior`; >20 `Master`.
-
-## Assinatura canônica
-
+## Casos de Teste (todos, incluindo extremos)
 ```python
-def categoria_natacao(idade: int) -> str:
+((9,), 'Mirim'), ((14,), 'Infantil'),
+((17,), 'Junior'), ((19,), 'Junior'), ((20,), 'Senior'), ((25,), 'Master'),
+# extremos / borda
+((0,), 'Mirim'), ((5,), 'Mirim'), ((8,), 'Mirim'),
+((10,), 'Infantil'), ((15,), 'Junior'), ((21,), 'Master'), ((30,), 'Master'),
 ```
 
-```typescript
-categoriaNatacao(idade: number): string
-```
+## Edge Cases / Extremos
+- Limites superiores exatos: 9 → Mirim, 14 → Infantil, 19 → Junior, 20 → Senior.
+- Acima de 20 (21, 30) → Master.
+- Borda inferior (idade 0) → Mirim.
+
+## Abordagem / Dica
+Encadear comparações `<=` na ordem `<9` → `<14` → `<19` → `<20` → senão `Master`. Usar `<=` para incluir os limites superiores.
+
+## Complexidade
+- Tempo O(1), espaço O(1).
+
+## Assinatura Canônica
+- **Python**: `def categoria_natacao(idade: int) -> str:`
+- **TypeScript**: `export function categoriaNatacao(idade: number): string`
+
+> Stub para editar: `ex041_categoria_natacao/solution_ex041_categoria_natacao.py` (Python) e `solution.ts` (TS).

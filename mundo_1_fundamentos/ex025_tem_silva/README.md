@@ -13,27 +13,6 @@ Verifica se o nome informado contém o sobrenome “SILVA” em qualquer posiç�
 ## Formato do Retorno
 Booleano: `True` se o nome contém “silva” (case-insensitive); caso contrário, `False`.
 
-## Casos de Exemplo
-```py
-tem_silva("João Silva Pereira")  ->  True
-```
-```py
-tem_silva("MARIA DA SILVA")  ->  True
-```
-```py
-tem_silva("Ana Souza")  ->  False
-```
-```py
-tem_silva("Silvania")  ->  True
-```
-```py
-tem_silva("")  ->  False
-```
-## Restrições / Edge Cases
-- A busca ignora maiúsculas/minúsculas (ex.: “SILVA”, “silva”, “SiLvA”).
-- “Silvania” contém “silva” como substring (verdadeiro).
-- String vazia retorna `False`.
-
 ## Assinatura canônica
 ```python
 def tem_silva(nome: str) -> bool:
@@ -41,3 +20,44 @@ def tem_silva(nome: str) -> bool:
 ```ts
 export function temSilva(nome: string): boolean
 ```
+
+## Casos de Exemplo
+```py
+f('João Silva Pereira',)  ->  True
+```
+```py
+f('MARIA DA SILVA',)  ->  True
+```
+```py
+f('Ana Souza',)  ->  False
+```
+```py
+f('Silvania',)  ->  True
+```
+```py
+f('',)  ->  False
+```
+
+## Casos de Teste (todos, incluindo extremos)
+```py
+    ('João Silva Pereira',),  # -> True
+    ('MARIA DA SILVA',),  # -> True
+    ('Ana Souza',),  # -> False
+    ('Silvania',),  # -> True
+    ('',),  # -> False
+    ('sILvA',),  # -> True
+    ('João sILVANIA',),  # -> True
+    ('Santo',),  # -> False
+    ('Silva Santos',),  # -> True
+    ('   da silva   ',),  # -> True
+    ('José',),  # -> False
+```
+
+## Edge Cases / Extremos
+Busca case-insensitive (“SILVA”, “silva”, “SiLvA” todos casam). “Silvania”/prefixo ou substring também casam. Strings vazias ou sem “silva” retornam `False`.
+
+## Abordagem / Dica
+Normalizar o nome com `lower()` e verificar presença da substring "silva" (operador `in` em Python / `includes` em JS).
+
+## Complexidade
+- Tempo O(n), espaço O(1)

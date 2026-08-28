@@ -26,11 +26,35 @@ Melhore o desafio 061: após exibir os 10 primeiros termos da PA, pergunte ao us
     pa_continua(1, 5, [2])    -> [1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56]
 ```
 
-## Restrições / Casos de Borda
+## Casos de Teste (todos, incluindo extremos)
 
-- Sempre começam sendo exibidos os 10 primeiros termos.
-- O valor 0 na lista de pedidos é a condição de parada: encerra a leitura e adiciona 0 termos (pedidos posteriores são ignorados).
-- Pedidos com valor negativo são tratados como 0 termo extra.
+```python
+    (2, 3, [5]) -> [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44],
+    (2, 3, []) -> [2, 5, 8, 11, 14, 17, 20, 23, 26, 29],
+    (2, 3, [3, 0]) -> [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38],
+    (2, 3, [0, 5]) -> [2, 5, 8, 11, 14, 17, 20, 23, 26, 29],
+    (1, 5, [2]) -> [1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56],
+    (2, 3, [-2]) -> [2, 5, 8, 11, 14, 17, 20, 23, 26, 29],
+    (2, 3, [1, 0, 5]) -> [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32],
+    (2, 3, [3]) -> [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
+```
+
+## Edge Cases / Extremos
+
+- Sempre começam exibidos os 10 primeiros termos.
+- ``0`` na lista de pedidos é a condição de parada: encerra a leitura e adiciona 0 termos; pedidos posteriores são ignorados.
+- Pedidos com valor **negativo** são tratados como **0 termo extra** (não adicionam, não param).
+- Pedidos vazios devolvem apenas os 10 termos base.
+
+## Abordagem / Dica
+
+1) Monte a sequência base com os 10 primeiros termos.
+2) Percorra ``pedidos_extras`` em ordem; ao encontrar ``0`` pare de ler.
+3) Para cada pedido válido, continue a PA a partir do último termo gerado, adicionando ``max(pedido, 0)`` novos termos.
+
+## Complexidade
+
+Tempo ``O(10 + somas dos pedidos)`` (linear na saída); espaço ``O(saída)``.
 
 ## Assinatura Canônica
 
@@ -53,3 +77,5 @@ export function paContinua(primeiro: number, razao: number, pedidosExtras: numbe
 ```
 
 > A função é **pura e determinística**: não usa ``input()`` nem ``print()``. A entrada via terminal e a saída na tela ficam fora da função testável.
+
+> Stub para editar: `ex062_pa_quantos_termos/solution_ex062_pa_quantos_termos.py` (Python) e `solution.ts` (TS).

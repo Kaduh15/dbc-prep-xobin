@@ -1,34 +1,50 @@
-# EX44 — Condição de Pagamento
+# EX44 — Condição de pagamento
 
 ## Descrição
-Elabore um programa que calcule o valor a ser pago por um produto, considerando o preço normal e a condição de pagamento escolhida, de acordo com a tabela: à vista dinheiro/cheque → 10% de desconto; à vista no cartão → 5% de desconto; em até 2x no cartão → preço normal; 3x ou mais no cartão → 20% de juros.
+Calcule o valor a ser pago por um produto conforme o preço normal e a condição escolhida: `dinheiro` → 10% de desconto; `cartao_avista` → 5% de desconto; `2x` → preço normal; `3x_mais` → 20% de juros.
 
 ## Parâmetros e Tipos
 - `preco` (float) — preço normal do produto.
-- `condicao` (str) — uma das condições: `dinheiro`, `cartao_avista`, `2x` ou `3x_mais`.
+- `condicao` (str) — uma das chaves canônicas: `dinheiro`, `cartao_avista`, `2x`, `3x_mais`.
 
 ## Retorno
-`float` — valor final a pagar conforme a condição escolhida.
+`float` — valor final a pagar conforme a condição.
 
 ## Casos de Exemplo
 ```python
-valor_final(100, 'dinheiro')     -> 90.0
-valor_final(100, 'cartao_avista')-> 95.0
-valor_final(100, '2x')           -> 100.0
-valor_final(100, '3x_mais')      -> 120.0
-valor_final(80, 'dinheiro')      -> 72.0"
+valor_final(100, 'dinheiro')      -> 90.0
+valor_final(100, 'cartao_avista') -> 95.0
+valor_final(100, '2x')            -> 100.0
+valor_final(100, '3x_mais')       -> 120.0
+valor_final(80, 'dinheiro')       -> 72.0
 ```
 
-## Restrições / Edge Cases
-- Chaves canônicas: `dinheiro`=10% off; `cartao_avista`=5% off; `2x`=preço normal; `3x_mais`=20% juros.
-- Condição desconhecida lança `ValueError`.
-
-## Assinatura canônica
-
+## Casos de Teste (todos, incluindo extremos)
 ```python
-def valor_final(preco: float, condicao: str) -> float:
+# valida
+((100, 'dinheiro'), 90.0), ((100, 'cartao_avista'), 95.0),
+((100, '2x'), 100.0), ((100, '3x_mais'), 120.0), ((80, 'dinheiro'), 72.0),
+# extremos
+((0, 'dinheiro'), 0.0), ((80, 'cartao_avista'), 76.0),
+((200, '2x'), 200.0), ((200, '3x_mais'), 240.0),
+((50, 'dinheiro'), 45.0), ((10, 'cartao_avista'), 9.5),
+# invalidas -> ValueError
+['parcelado', '', 'cheque', 'DINHEIRO']
 ```
 
-```typescript
-valorFinal(preco: number, condicao: string): number
-```
+## Edge Cases / Extremos
+- Preço zero → 0.0 em todas as condições.
+- `cartao_avista` com preços quebrados (10 → 9.5) verifica multiplicação por 0.95.
+- Condições desconhecidas (inclusive vazia, com letra maiúscula ou qualquer outra string) → `ValueError`. Chaves são **sensíveis a caixa**.
+
+## Abordagem / Dica
+Mapear cada condição para o fator: `0.9`, `0.95`, `1.0`, `1.2`. `switch`/`if` com `default`/`else` lançando `ValueError`.
+
+## Complexidade
+- Tempo O(1), espaço O(1).
+
+## Assinatura Canônica
+- **Python**: `def valor_final(preco: float, condicao: str) -> float:`
+- **TypeScript**: `export function valorFinal(preco: number, condicao: string): number`
+
+> Stub para editar: `ex044_condicao_pagamento/solution_ex044_condicao_pagamento.py` (Python) e `solution.ts` (TS).

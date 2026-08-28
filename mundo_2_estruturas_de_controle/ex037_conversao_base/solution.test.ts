@@ -2,25 +2,27 @@ import { describe, it, expect } from "vitest";
 import { converterBase } from "./solution";
 
 describe("converterBase", () => {
-  it("10 em binario", () => {
-    expect(converterBase(10, 1)).toEqual("1010");
+  it.each([
+    [[10, 1], "1010"],
+    [[10, 2], "12"],
+    [[10, 3], "a"],
+    [[255, 1], "11111111"],
+    [[255, 2], "377"],
+    [[255, 3], "ff"],
+    [[0, 2], "0"],
+    [[0, 1], "0"],
+    [[0, 3], "0"],
+    [[16, 1], "10000"],
+    [[16, 3], "10"],
+    [[31, 1], "11111"],
+    [[8, 2], "10"],
+    [[1000, 3], "3e8"],
+  ] as [number[], string][])("caso %#", (args, esperado) => {
+    expect(converterBase(args[0], args[1])).toEqual(esperado);
   });
-  it("10 em octal", () => {
-    expect(converterBase(10, 2)).toEqual("12");
-  });
-  it("10 em hexa", () => {
-    expect(converterBase(10, 3)).toEqual("a");
-  });
-  it("255 em binario", () => {
-    expect(converterBase(255, 1)).toEqual("11111111");
-  });
-  it("255 em octal", () => {
-    expect(converterBase(255, 2)).toEqual("377");
-  });
-  it("255 em hexa", () => {
-    expect(converterBase(255, 3)).toEqual("ff");
-  });
-  it("0 em qq base", () => {
-    expect(converterBase(0, 2)).toEqual("0");
+
+  it("base invalida lanca", () => {
+    expect(() => converterBase(10, 9)).toThrow();
+    expect(() => converterBase(10, 0)).toThrow();
   });
 });

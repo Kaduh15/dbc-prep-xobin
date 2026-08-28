@@ -26,11 +26,36 @@ Faça um programa que jogue par ou ímpar com o computador. O jogador escolhe en
     par_ou_impar(7, 3, "par")   -> True
 ```
 
-## Restrições / Casos de Borda
+## Casos de Teste (todos, incluindo extremos)
 
-- A soma é par quando ``soma % 2 == 0``.
-- Jogador vence quando a paridade da soma bate com a aposta (par/par ou ímpar/ímpar).
-- ``escolha`` é case-insensitive.
+```python
+    (4, 2, 'par') -> True,
+    (5, 4, 'impar') -> True,
+    (4, 2, 'impar') -> False,
+    (3, 4, 'par') -> False,
+    (7, 3, 'par') -> True,
+    (7, 3, 'PAR') -> True,
+    (5, 5, 'impar') -> False,
+    (0, 0, 'par') -> True,
+    (1, 2, 'impar') -> True,
+    (2, 4, 'impar') -> False,
+    (3, 4, 'IMPAR') -> True
+```
+
+## Edge Cases / Extremos
+
+- A soma é **par** quando ``soma % 2 == 0``.
+- Jogador vence quando a paridade da soma bate com a aposta (par->par ou ímpar->ímpar).
+- ``escolha`` é **case-insensitive** (``"PAR"``, ``"Impar"`` funcionam).
+- Somas empatadas/zero também são determinísticas (``(0,0,'par') -> True``).
+
+## Abordagem / Dica
+
+Calcule ``soma = jogador + computador``; determine a paridade. Compare a paridade da soma com a escolha normalizada (<- letras minúsculas). Qualquer escolha não-``"par"`` é tratada como ímpar.
+
+## Complexidade
+
+Tempo ``O(1)``; espaço ``O(1)``.
 
 ## Assinatura Canônica
 
@@ -50,3 +75,5 @@ export function parOuImpar(jogador: number, computador: number, escolha: string)
 ```
 
 > A função é **pura e determinística**: não usa ``input()`` nem ``print()``. A entrada via terminal e a saída na tela ficam fora da função testável.
+
+> Stub para editar: `ex068_par_ou_impar/solution_ex068_par_ou_impar.py` (Python) e `solution.ts` (TS).

@@ -1,31 +1,38 @@
 # EX058 — Jogo de adivinhação (quantos palpites)
 
-**Enunciado (Curso em Vídeo, DESAFIO 058):**
-> Melhore o jogo do DESAFIO 028 onde o computador vai "pensar" em um número entre 0 e 10. Só que agora o jogador vai tentar adivinhar até acertar, mostrando no final quantos palpites foram necessários para vencer.
+**Enunciado (Curso em Vídeo):**
+> Melhore o jogo do DESAFIO 028 onde o computador vai "pensar" em um número entre 0 e 10. Agora o jogador tenta adivinhar até acertar, mostrando no final quantos palpites foram necessários.
 
 ## Descrição
-O número secreto (que o computador "pensa") vira um parâmetro da função para manter a determinismo da lógica de um jogo interativo. A função conta **quantos palpites foram necessários** para o jogador vencer (a partir da sequência de tentativas).
+O número secreto vira parâmetro (determinismo). A função conta **quantos palpites foram necessários** a partir da sequência de tentativas.
 
 ## Parâmetros e Tipos
 - `numero` — `int`: número secreto (0 a 10).
-- `tentativas` — `list[int]`: sequência de palpites dados pelo jogador.
+- `tentativas` — `list[int]`: sequência de palpites do jogador.
 
 ## Retorno
-- `int`: quantidade de palpites até o **primeiro acerto** (1-base). Se o número nunca for acertado, retorna o total de tentativas.
+`int`: quantidade de palpites até o **primeiro acerto** (1-base). Se nunca acertar, retorna o total de tentativas.
 
 ## Casos de Exemplo
 ```python
-palpites_para_acertar(5, [8, 2, 5, 9])  # 3  -> acerta no 3º palpite
-palpites_para_acertar(7, [7])           # 1  -> acerta de primeira
-palpites_para_acertar(3, [1, 2, 3])     # 3  -> acerta no último
-palpites_para_acertar(9, [1, 2, 3])     # 3  -> nunca acerta, usa todos
+palpites_para_acertar(5, [8, 2, 5, 9])  # 3
+palpites_para_acertar(7, [7])  # 1
+palpites_para_acertar(3, [1, 2, 3])  # 3
+palpites_para_acertar(9, [1, 2, 3])  # 3
 ```
 
-## Restrições / Edge Cases
-- A contagem é 1-base (primeiro palpite = 1).
-- Para de contar no **primeiro** acerto (palpites seguintes são ignorados).
-- Sem acerto → retorna o número total de tentativas.
-- As dicas "maior/menor" do jogo original ficam fora da função pura.
+## Edge Cases / Extremos
+- **Acerto de primeira:** Retorna 1.
+- **Acerto no último:** Retorna o tamanho da lista.
+- **Sem acerto:** Retorna o total de tentativas.
+- **Lista vazia:** Retorna 0 (nenhum palpite dado).
+- **Acerto repetido:** Para no **primeiro** acerto (palpites seguintes ignorados).
+
+## Abordagem
+Itera enumerando os palpites; no primeiro igual a `numero`, devolve a posição 1-base; se terminar sem acerto, devolve `len(tentativas)`.
+
+## Complexidade
+Tempo O(k) (k = nº de tentativas, pior caso percorre tudo); Espaço O(1).
 
 ## Assinatura canônica
 ```python
@@ -33,4 +40,17 @@ def palpites_para_acertar(numero: int, tentativas: list[int]) -> int
 ```
 ```typescript
 export function palpitesParaAcertar(numero: number, tentativas: number[]): number
+```
+
+## Stub TDD (para implementar)
+Arquivos: `solution_ex058_adivinhacao.py`, `solution.ts`. Testes: `test_ex058_adivinhacao.py`, `solution.test.ts`.
+
+```python
+def palpites_para_acertar(numero: int, tentativas: list[int]) -> int:
+    raise NotImplementedError
+```
+```typescript
+export function palpitesParaAcertar(numero: number, tentativas: number[]): number {
+  throw new Error("not implemented");
+}
 ```

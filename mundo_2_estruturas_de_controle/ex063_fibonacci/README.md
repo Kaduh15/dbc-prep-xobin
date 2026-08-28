@@ -24,11 +24,33 @@ Escreva um programa que leia um número inteiro N e mostre na tela os N primeiro
     fibonacci(10) -> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 ```
 
-## Restrições / Casos de Borda
+## Casos de Teste (todos, incluindo extremos)
 
-- Recurrence: ``fib(0) = 0``, ``fib(1) = 1`` e ``fib(n) = fib(n-1) + fib(n-2)``.
-- ``n == 0`` retorna ``[]``; ``n == 1`` retorna ``[0]``.
-- Para ``n < 0`` retorna lista vazia (entrada inválida).
+```python
+    (0,) -> [],
+    (1,) -> [0],
+    (2,) -> [0, 1],
+    (5,) -> [0, 1, 1, 2, 3],
+    (10,) -> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34],
+    (6,) -> [0, 1, 1, 2, 3, 5],
+    (7,) -> [0, 1, 1, 2, 3, 5, 8],
+    (-3,) -> []
+```
+
+## Edge Cases / Extremos
+
+- ``n == 0`` retorna ``[]``; ``n == 1`` retorna ``[0]`` (termina antes de completar ``[0, 1]``).
+- ``n < 0``: entrada inválida -> lista vazia.
+- Recurrency: ``fib(0)=0``, ``fib(1)=1``, ``fib(n)=fib(n-1)+fib(n-2)``.
+- Um termo de meio (ex.: ``n=7`` -> ``[0,1,1,2,3,5,8]``) confere a enumeração a partir de 0.
+
+## Abordagem / Dica
+
+Itere mantendo os dois últimos termos em variáveis/pilha: a cada passo o novo termo é a soma dos dois anteriores. Para listas, comece de ``[0, 1]`` e estenda até alcançar ``n`` (fatiando caso a semente já ultrapasse ``n``).
+
+## Complexidade
+
+Tempo ``O(n)``; espaço ``O(n)`` (lista de saída).
 
 ## Assinatura Canônica
 
@@ -51,3 +73,5 @@ export function fibonacci(n: number): number[] {
 ```
 
 > A função é **pura e determinística**: não usa ``input()`` nem ``print()``. A entrada via terminal e a saída na tela ficam fora da função testável.
+
+> Stub para editar: `ex063_fibonacci/solution_ex063_fibonacci.py` (Python) e `solution.ts` (TS).

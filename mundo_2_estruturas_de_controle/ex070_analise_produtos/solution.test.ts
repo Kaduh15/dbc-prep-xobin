@@ -1,17 +1,18 @@
-import { describe, it, expect } from 'vitest';
-import { analiseProdutos } from './solution';
+import { describe, it, expect } from "vitest";
+import { analiseProdutos } from "./solution";
 
-describe('analiseProdutos', () => {
-  it('caso 1', () => {
-    expect(analiseProdutos([("Borracha", 2), ("Caderno", 15), ("Mouse", 120)])).toEqual([137.0, 2, "Borracha"]);
-  });
-  it('caso 2', () => {
-    expect(analiseProdutos([("X", 100.0)])).toEqual([100.0, 0, "X"]);
-  });
-  it('caso 3', () => {
-    expect(analiseProdutos([("A", 5), ("B", 3)])).toEqual([8.0, 2, "B"]);
-  });
-  it('caso 4', () => {
-    expect(analiseProdutos([])).toEqual([0.0, 0, ""]);
+describe("analiseProdutos", () => {
+  it.each([
+    [[[['Borracha', 2], ['Caderno', 15], ['Mouse', 120]]], [137.0, 2, 'Borracha']],
+    [[[['X', 100.0]]], [100.0, 0, 'X']],
+    [[[['A', 5], ['B', 3]]], [8.0, 2, 'B']],
+    [[[]], [0.0, 0, '']],
+    [[[['A', 99.5], ['B', 100]]], [199.5, 1, 'A']],
+    [[[['A', 5], ['B', 5]]], [10.0, 2, 'A']],
+    [[[['Copo', 7.5], ['Lapis', 1.5]]], [9.0, 2, 'Lapis']],
+    [[[['Z', 0]]], [0.0, 1, 'Z']],
+  ])("caso", (args: any[], esperado: any) => {
+    const resultado = analiseProdutos(...args);
+    expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));
   });
 });

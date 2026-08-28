@@ -1,9 +1,9 @@
 # Ex 028 — Adivinhação (0 a 5)
 
-**Enunciado original (Curso em Vídeo / Guanabara):** “Escreva um programa que faça o computador "pensar" em um número inteiro entre 0 e 5 e peça para o usuário tentar descobrir qual foi o número escolhido pelo computador. O programa deverá escrever na tela se o usuário venceu ou perdeu.”
+**Enunciado original (Curso em Vídeo / Guanabara):** “Escreva um programa que pense em um número inteiro entre 0 e 5 e peça para o usuário adivinhá-lo. O programa escreve se o usuário venceu ou perdeu.”
 
 ## Descrição
-Versão determinística do jogo: dado o palpite do usuário e o número “pensado” (segredo), retorna se o usuário acertou (venceu). A geração do segredo ocorre fora da função testada.
+Versão determinística: dado o palpite do usuário e o número “pensado” (segredo), retorna se acertou. A geração do segredo fica fora da função.
 
 ## Parâmetros e Tipos
 | Nome | Tipo | Descrição |
@@ -12,21 +12,7 @@ Versão determinística do jogo: dado o palpite do usuário e o número “pensa
 | segredo | int | Número “pensado” pelo computador. |
 
 ## Formato do Retorno
-Booleano: `True` se `palpite == segredo` (usuário venceu); caso contrário `False`.
-
-## Casos de Exemplo
-```py
-venceu_adivinhacao(3, 3)  ->  True
-```
-```py
-venceu_adivinhacao(3, 5)  ->  False
-```
-```py
-venceu_adivinhacao(0, 0)  ->  True
-```
-## Restrições / Edge Cases
-- Função pura: a aleatoriedade fica fora (segredo é passado como argumento).
-- Palpites fora do intervalo [0,5] continuam válidos como comparação.
+Booleano: `True` se `palpite == segredo` (venceu); caso contrário `False`.
 
 ## Assinatura canônica
 ```python
@@ -35,3 +21,37 @@ def venceu_adivinhacao(palpite: int, segredo: int) -> bool:
 ```ts
 export function venceuAdivinhacao(palpite: number, segredo: number): boolean
 ```
+
+## Casos de Exemplo
+```py
+f(3, 3)  ->  True
+```
+```py
+f(3, 5)  ->  False
+```
+```py
+f(0, 0)  ->  True
+```
+
+## Casos de Teste (todos, incluindo extremos)
+```py
+    (3, 3),  # -> True
+    (3, 5),  # -> False
+    (0, 0),  # -> True
+    (5, 0),  # -> False
+    (5, 5),  # -> True
+    (2, 3),  # -> False
+    (0, 5),  # -> False
+    (4, 4),  # -> True
+    (1, 0),  # -> False
+    (-1, -1),  # -> True
+```
+
+## Edge Cases / Extremos
+Função pura: a aleatoriedade fica fora (segredo é argumento). Coincidência exata nos extremos do intervalo ([0,5]) e palpite == segredo em qualquer faixa retorna `True`.
+
+## Abordagem / Dica
+Comparação direta `palpite == segredo`.
+
+## Complexidade
+- Tempo O(1), espaço O(1)

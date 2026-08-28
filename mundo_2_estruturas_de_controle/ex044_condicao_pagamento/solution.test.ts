@@ -2,19 +2,24 @@ import { describe, it, expect } from "vitest";
 import { valorFinal } from "./solution";
 
 describe("valorFinal", () => {
-  it('valorFinal(100, "dinheiro")', () => {
-    expect(valorFinal(100, "dinheiro")).toEqual(90.0);
+  it.each([
+    [[100, "dinheiro"], 90],
+    [[100, "cartao_avista"], 95],
+    [[100, "2x"], 100],
+    [[100, "3x_mais"], 120],
+    [[80, "dinheiro"], 72],
+    [[0, "dinheiro"], 0],
+    [[80, "cartao_avista"], 76],
+    [[200, "2x"], 200],
+    [[200, "3x_mais"], 240],
+    [[50, "dinheiro"], 45],
+    [[10, "cartao_avista"], 9.5],
+  ] as [unknown[], number][])("caso %#", (args, esperado) => {
+    expect(valorFinal(args[0] as number, args[1] as string)).toBe(esperado);
   });
-  it('valorFinal(100, "cartao_avista")', () => {
-    expect(valorFinal(100, "cartao_avista")).toEqual(95.0);
-  });
-  it('valorFinal(100, "2x")', () => {
-    expect(valorFinal(100, "2x")).toEqual(100.0);
-  });
-  it('valorFinal(100, "3x_mais")', () => {
-    expect(valorFinal(100, "3x_mais")).toEqual(120.0);
-  });
-  it('valorFinal(80, "dinheiro")', () => {
-    expect(valorFinal(80, "dinheiro")).toEqual(72.0);
+
+  it("condicao invalida lanca", () => {
+    expect(() => valorFinal(100, "parcelado")).toThrow();
+    expect(() => valorFinal(100, "")).toThrow();
   });
 });

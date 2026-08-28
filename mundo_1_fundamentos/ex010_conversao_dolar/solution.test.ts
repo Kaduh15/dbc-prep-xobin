@@ -1,20 +1,19 @@
-import { describe, it, expect } from 'vitest';
-import { converterDolar } from './solution';
+import { describe, it, expect } from "vitest";
+import { converterDolar } from "./solution";
+
 
 describe('converterDolar', () => {
-  it('converte com cotação explícita', () => {
-    expect(converterDolar(327, 3.27)).toBeCloseTo(100.0, 6);
-  });
-
-  it('converte 100 reais a 5.0', () => {
-    expect(converterDolar(100, 5.0)).toBeCloseTo(20.0, 6);
-  });
-
-  it('zero reais', () => {
-    expect(converterDolar(0, 3.27)).toBeCloseTo(0.0, 6);
-  });
-
-  it('usa cotação padrão 3.27', () => {
-    expect(converterDolar(3.27)).toBeCloseTo(1.0, 6);
+  it.each([
+    [[327, 3.27], 100],
+    [[100, 5], 20],
+    [[0, 3.27], 0],
+    [[3.27, 3.27], 1],
+    [[3.27], 1],
+    [[50, 5], 10],
+    [[200, 4], 50],
+    [[1, 2], 0.5],
+  ])("caso", (args: any[], esperado: any) => {
+    const resultado = converterDolar(...(args as []));
+    expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));
   });
 });

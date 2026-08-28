@@ -12,7 +12,13 @@ describe("ehPrimo", () => {
     [12, false],
     [100, false],
     [0, false],
-  ])("f(%i) -> %o", (n, esperado) => {
-    expect(ehPrimo(n)).toBe(esperado);
+    [-5, false],
+    [9, false],
+    [91, false],
+    [101, true],
+    [997, true],
+  ])("f(...) -> %j",
+    (n, esperado) => {
+      expect(ehPrimo(n)).toBe(esperado);
+    });
   });
-});

@@ -2,10 +2,23 @@ import { describe, it, expect } from "vitest";
 import { ehBissexto } from "./solution";
 
 describe("ehBissexto", () => {
-  it("ano2024", () => { expect(ehBissexto(2024)).toBe(true); });
-  it("ano2023", () => { expect(ehBissexto(2023)).toBe(false); });
-  it("ano2000", () => { expect(ehBissexto(2000)).toBe(true); });
-  it("ano1900", () => { expect(ehBissexto(1900)).toBe(false); });
-  it("ano1600", () => { expect(ehBissexto(1600)).toBe(true); });
-  it("quatro", () => { expect(ehBissexto(4)).toBe(true); });
+  it.each([
+    [[2024], true],
+    [[2023], false],
+    [[2000], true],
+    [[1900], false],
+    [[1600], true],
+    [[4], true],
+    [[1700], false],
+    [[2100], false],
+    [[0], true],
+    [[400], true],
+    [[1996], true],
+    [[1], false],
+    [[100], false],
+    [[700], false],
+  ])("caso", (args: any[], esperado: any) => {
+    const resultado = ehBissexto(...(args as Parameters<typeof ehBissexto>));
+    expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));
+  });
 });

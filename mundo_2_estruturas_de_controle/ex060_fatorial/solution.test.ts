@@ -9,7 +9,12 @@ describe("fatorial", () => {
     [3, 6],
     [10, 3628800],
     [6, 720],
-  ])("f(%i) -> %i", (n, esperado) => {
-    expect(fatorial(n)).toBe(esperado);
+    [2, 2],
+    [4, 24],
+    [7, 5040],
+    [12, 479001600],
+  ])("f(...) -> %j",
+    (n, esperado) => {
+      expect(fatorial(n)).toBe(esperado);
+    });
   });
-});

@@ -2,9 +2,21 @@ import { describe, it, expect } from "vitest";
 import { maiorEMenor } from "./solution";
 
 describe("maiorEMenor", () => {
-  it("ordemMista", () => { expect(maiorEMenor(3, 7, 5)).toEqual([7, 3]); });
-  it("crescente", () => { expect(maiorEMenor(1, 2, 3)).toEqual([3, 1]); });
-  it("decrescente", () => { expect(maiorEMenor(9, 5, 1)).toEqual([9, 1]); });
-  it("negativos", () => { expect(maiorEMenor(-1, -5, -2)).toEqual([-1, -5]); });
-  it("iguais", () => { expect(maiorEMenor(9, 9, 9)).toEqual([9, 9]); });
+  it.each([
+    [[3, 7, 5], [7, 3]],
+    [[1, 2, 3], [3, 1]],
+    [[9, 5, 1], [9, 1]],
+    [[-1, -5, -2], [-1, -5]],
+    [[9, 9, 9], [9, 9]],
+    [[5, 5, 3], [5, 3]],
+    [[3, 5, 5], [5, 3]],
+    [[5, 3, 5], [5, 3]],
+    [[1, 1, 1], [1, 1]],
+    [[0, 0, 7], [7, 0]],
+    [[7, 5, 7], [7, 5]],
+    [[-3, -3, -1], [-1, -3]],
+  ])("caso", (args: any[], esperado: any) => {
+    const resultado = maiorEMenor(...(args as Parameters<typeof maiorEMenor>));
+    expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));
+  });
 });

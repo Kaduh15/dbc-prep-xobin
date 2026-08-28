@@ -2,19 +2,18 @@ import { describe, it, expect } from "vitest";
 import { situacaoAlistamento } from "./solution";
 
 describe("situacaoAlistamento", () => {
-  it('situacaoAlistamento(16)', () => {
-    expect(situacaoAlistamento(16)).toEqual('faltam 2 anos');
-  });
-  it('situacaoAlistamento(17)', () => {
-    expect(situacaoAlistamento(17)).toEqual('faltam 1 ano');
-  });
-  it('situacaoAlistamento(18)', () => {
-    expect(situacaoAlistamento(18)).toEqual('hora de se alistar');
-  });
-  it('situacaoAlistamento(21)', () => {
-    expect(situacaoAlistamento(21)).toEqual('ja passou 3 anos');
-  });
-  it('situacaoAlistamento(30)', () => {
-    expect(situacaoAlistamento(30)).toEqual('ja passou 12 anos');
+  it.each([
+    [[16], "faltam 2 anos"],
+    [[17], "faltam 1 ano"],
+    [[18], "hora de se alistar"],
+    [[21], "ja passou 3 anos"],
+    [[30], "ja passou 12 anos"],
+    [[0], "faltam 18 anos"],
+    [[1], "faltam 17 anos"],
+    [[19], "ja passou 1 ano"],
+    [[25], "ja passou 7 anos"],
+    [[100], "ja passou 82 anos"],
+  ] as [number[], string][])("caso %#", (args, esperado) => {
+    expect(situacaoAlistamento(args[0])).toEqual(esperado);
   });
 });

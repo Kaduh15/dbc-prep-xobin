@@ -8,7 +8,11 @@ describe("palpitesParaAcertar", () => {
     [7, [7], 1],
     [9, [1, 2, 3], 3],
     [4, [4, 4], 1],
-  ])("f(%i, %j) -> %i", (numero, tentativas, esperado) => {
-    expect(palpitesParaAcertar(numero, tentativas)).toBe(esperado);
+    [4, [], 0],
+    [3, [1], 1],
+    [4, [1, 2, 3, 4], 4],
+  ])("f(...) -> %j",
+    (numero, tentativas, esperado) => {
+      expect(palpitesParaAcertar(numero, tentativas)).toBe(esperado);
+    });
   });
-});

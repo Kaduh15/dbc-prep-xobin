@@ -23,11 +23,33 @@ Crie um programa que leia o nome e o preço de vários produtos. O programa perg
     analise_produtos([])                                                   -> (0.0, 0, "")
 ```
 
-## Restrições / Casos de Borda
+## Casos de Teste (todos, incluindo extremos)
 
-- "Menos de R$100" significa preço estritamente menor que ``100``.
-- O mais barato é o produto de menor preço; em caso de empate, vale o primeiro encontrado.
-- Com lista vazia, retorne ``(0.0, 0, "")``.
+```python
+    ([('Borracha', 2), ('Caderno', 15), ('Mouse', 120)],) -> (137.0, 2, 'Borracha'),
+    ([('X', 100.0)],) -> (100.0, 0, 'X'),
+    ([('A', 5), ('B', 3)],) -> (8.0, 2, 'B'),
+    ([],) -> (0.0, 0, ''),
+    ([('A', 99.5), ('B', 100)],) -> (199.5, 1, 'A'),
+    ([('A', 5), ('B', 5)],) -> (10.0, 2, 'A'),
+    ([('Copo', 7.5), ('Lapis', 1.5)],) -> (9.0, 2, 'Lapis'),
+    ([('Z', 0)],) -> (0.0, 1, 'Z')
+```
+
+## Edge Cases / Extremos
+
+- ``preco < 100`` (estritamente menor; o preço exatamente 100 não conta).
+- Mais barato é o de menor preço; em **empate, vale o primeiro** encontrado.
+- Lista vazia -> ``(0.0, 0, "")``.
+- Preços com decimais e preço zero são cobertos pelos extremos.
+
+## Abordagem / Dica
+
+Um único passe: acumule o total, conte os que têm preço < 100 e acompanhe o menor preço (e o nome associado), atualizando apenas em estritamente menor para preservar o primeiro empate.
+
+## Complexidade
+
+Tempo ``O(n)``; espaço ``O(1)``.
 
 ## Assinatura Canônica
 
@@ -50,3 +72,5 @@ export function analiseProdutos(produtos: [string, number][]): [number, number, 
 ```
 
 > A função é **pura e determinística**: não usa ``input()`` nem ``print()``. A entrada via terminal e a saída na tela ficam fora da função testável.
+
+> Stub para editar: `ex070_analise_produtos/solution_ex070_analise_produtos.py` (Python) e `solution.ts` (TS).

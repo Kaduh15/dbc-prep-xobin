@@ -2,17 +2,14 @@ import { describe, expect, it } from "vitest";
 import { sorteiaAluno } from "./solution";
 
 describe("sorteiaAluno", () => {
-  const alunos = ["Ana", "Bia", "Caio", "Duda"];
-  it.each([
-    [2, "Caio"],
-    [0, "Ana"],
-    [1, "Bia"],
-    [3, "Duda"],
-  ])("sorteiaAluno(alunos, %d) retorna %s", (indice, esperado) => {
+  it.each([[["Ana", "Bia", "Caio", "Duda"], 2, "Caio"],
+    [["Ana", "Bia", "Caio", "Duda"], 0, "Ana"],
+    [["Ana", "Bia", "Caio", "Duda"], 1, "Bia"],
+    [["Ana", "Bia", "Caio", "Duda"], 3, "Duda"],
+    [["Solo"], 0, "Solo"],
+    [["a", "b", "c", "d", "e", "f"], 5, "f"],
+    [["a", "b", "c"], 2, "c"]])
+    ("sorteiaAluno(%j, %d) retorna %s", (alunos, indice, esperado) => {
     expect(sorteiaAluno(alunos, indice)).toBe(esperado);
-  });
-
-  it("funciona com um único aluno", () => {
-    expect(sorteiaAluno(["Solo"], 0)).toBe("Solo");
   });
 });

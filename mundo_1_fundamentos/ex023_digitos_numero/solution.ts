@@ -1,7 +1,8 @@
 /**
- * EX023 — Decompõe um número 0-9999 em unidade, dezena, centena e milhar.
+ * Dígitos de um Número — TDD stub: implemente a função.
  */
 
 export function decomporNumero(numero: number): [number, number, number, number] {
+  // TODO: implementar. Assinatura: decomporNumero(numero: number): [number, number, number, number]
   throw new Error("Not implemented");
 }

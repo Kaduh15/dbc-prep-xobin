@@ -10,7 +10,11 @@ describe("validarSexo", () => {
     ["X", false],
     ["", false],
     ["MF", false],
-  ])("f(%j) -> %o", (sexo, esperado) => {
-    expect(validarSexo(sexo)).toBe(esperado);
+    [" M", false],
+    ["F ", false],
+    ["MO", false],
+  ])("f(...) -> %j",
+    (sexo, esperado) => {
+      expect(validarSexo(sexo)).toBe(esperado);
+    });
   });
-});

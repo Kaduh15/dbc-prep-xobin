@@ -8,7 +8,11 @@ describe("progressaoAritmetica", () => {
     [5, 0, 10, [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]],
     [1, 2, 5, [1, 3, 5, 7, 9]],
     [7, -2, 3, [7, 5, 3]],
-  ])("f(%i, %i, %i) -> %j", (primeiro, razao, n, esperado) => {
-    expect(progressaoAritmetica(primeiro, razao, n)).toEqual(esperado);
+    [3, 3, 1, [3]],
+    [100, -5, 4, [100, 95, 90, 85]],
+    [0, 5, 3, [0, 5, 10]],
+  ])("f(...) -> %j",
+    (primeiro, razao, n, esperado) => {
+      expect(progressaoAritmetica(primeiro, razao, n)).toEqual(esperado);
+    });
   });
-});

@@ -10,7 +10,7 @@ Para tornar o exercício testável, a função analisa uma string e retorna um d
 
 ## Formato do Retorno
 - `dict[str, str | bool]` com as chaves:
-  - `tipo`: `"str"` (tipo primitivo)
+  - `tipo`: `"str"`
   - `so_espacos`: `valor.isspace()`
   - `e_numero`: `valor.isnumeric()`
   - `e_alfabetico`: `valor.isalpha()`
@@ -19,28 +19,40 @@ Para tornar o exercício testável, a função analisa uma string e retorna um d
   - `em_minusculas`: `valor.islower()`
   - `capitalizada`: `valor.istitle()`
 
-## Assinatura Canônica
-- **Python**: `analisar_valor(valor: str) -> dict`
-- **TypeScript**: `analisarValor(valor: string): Record<string, string | boolean>`
-
 ## Casos de Exemplo
 ```
-Input: "Python"
-Output: {"tipo": "str", "so_espacos": False, "e_numero": False,
-         "e_alfabetico": True, "e_alfanumerico": True,
-         "em_maiusculas": False, "em_minusculas": True, "capitalizada": True}
-
-Input: "1234"
-Output: {"tipo": "str", "so_espacos": False, "e_numero": True,
-         "e_alfabetico": False, "e_alfanumerico": True,
-         "em_maiusculas": False, "em_minusculas": False, "capitalizada": False}
-
-Input: "   "
-Output: {"tipo": "str", "so_espacos": True, "e_numero": False,
-         "e_alfabetico": False, "e_alfanumerico": False,
-         "em_maiusculas": False, "em_minusculas": False, "capitalizada": False}
+Input: "Python"  -> {"tipo": "str", "so_espacos": False, "e_numero": False,
+                   "e_alfabetico": True, "e_alfanumerico": True,
+                   "em_maiusculas": False, "em_minusculas": False, "capitalizada": True}
+Input: "1234"    -> {"tipo": "str", "so_espacos": False, "e_numero": True,
+                   "e_alfabetico": False, "e_alfanumerico": True, ...}
+Input: "   "     -> {"tipo": "str", "so_espacos": True, ...}
 ```
 
-## Restrições / Edge Cases
-- Entrada sempre tratada como string (mantém fidelidade ao `input()` original).
-- String vazia e strings só de espaços são válidas.
+## Casos de Teste (todos, incluindo extremos)
+```
+(("Python",), {"tipo": "str", "so_espacos": False, "e_numero": False, "e_alfabetico": True, "e_alfanumerico": True, "em_maiusculas": False, "em_minusculas": False, "capitalizada": True})
+(("1234",), {"tipo": "str", "so_espacos": False, "e_numero": True, "e_alfabetico": False, "e_alfanumerico": True, "em_maiusculas": False, "em_minusculas": False, "capitalizada": False})
+(("   ",), {"tipo": "str", "so_espacos": True, "e_numero": False, "e_alfabetico": False, "e_alfanumerico": False, "em_maiusculas": False, "em_minusculas": False, "capitalizada": False})
+(("",), {"tipo": "str", "so_espacos": False, "e_numero": False, "e_alfabetico": False, "e_alfanumerico": False, "em_maiusculas": False, "em_minusculas": False, "capitalizada": False})
+(("ABC",), {"tipo": "str", "e_alfabetico": True, "e_alfanumerico": True, "em_maiusculas": True, "em_minusculas": False, "capitalizada": False})
+(("abc",), {"tipo": "str", "e_alfabetico": True, "e_alfanumerico": True, "em_maiusculas": False, "em_minusculas": True, "capitalizada": False})
+(("Hello World",), {"tipo": "str", "em_maiusculas": False, "em_minusculas": False, "capitalizada": True})
+(("12A",), {"tipo": "str", "e_alfanumerico": True, "em_maiusculas": True, "em_minusculas": False, "capitalizada": True})
+(("123abc",), {"tipo": "str", "e_alfanumerico": True, "em_maiusculas": False, "em_minusculas": True, "capitalizada": False})
+(("   X",), {"tipo": "str", "em_maiusculas": True, "em_minusculas": False, "capitalizada": True})```
+
+## Edge Cases / Extremos
+String vazia (`""`) não é só-espaços nem título. Maiúsculas puras (`"ABC"`) têm `capitalizada = False` (istitle exige apenas a 1ª letra de cada palavra maiúscula). Misturas letras+números (`"12A"`, `"123abc"`) dependem de cada predicado. Espaços no início (`"   X"`) não impedem `isupper()`/`istitle()`. **Nota:** `"Python".islower()` é `False` (o `P` é maiúsculo) — o caso canônico original registrava `em_minusculas: True`, valor factualmente incorreto corrigido para `False`.
+
+## Abordagem / Dica
+Delegação direta aos métodos da classe `str` em Python (`isspace`, `isnumeric`, `isalpha`, `isalnum`, `isupper`, `islower`, `istitle`). Em TS, reproduza os predicados com string/RegExp (espaços, dígitos, letras ASCII, maiúsculas/minúsculas e o conceito de 'title case').
+
+## Complexidade
+- Tempo O(n), espaço O(n) (tamanho da string de entrada).
+
+## Assinatura Canônica
+- **Python**: `def analisar_valor(valor: str) -> dict:`
+- **TypeScript**: `export function analisarValor(valor: string): Record<string, string | boolean> {`
+
+> Stub para editar: `ex004_tipo_primitivo/solution_ex004_tipo_primitivo.py` (Python) e `solution.ts` (TS).

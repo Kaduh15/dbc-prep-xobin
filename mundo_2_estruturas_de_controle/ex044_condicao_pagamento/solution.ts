@@ -1,3 +1,3 @@
 export function valorFinal(preco: number, condicao: string): number {
-  throw new Error("NotImplemented");
+  throw new Error("Not implemented");
 }

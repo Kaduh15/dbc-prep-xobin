@@ -2,8 +2,17 @@ import { describe, it, expect } from "vitest";
 import { primeiroUltimoNome } from "./solution";
 
 describe("primeiroUltimoNome", () => {
-  it("doisNomes", () => { expect(primeiroUltimoNome("João Silva")).toEqual(["João", "Silva"]); });
-  it("tresNomes", () => { expect(primeiroUltimoNome("Maria Clara Souza")).toEqual(["Maria", "Souza"]); });
-  it("nomeUnico", () => { expect(primeiroUltimoNome("Ana")).toEqual(["Ana", "Ana"]); });
-  it("espacosExtra", () => { expect(primeiroUltimoNome("  Pedro  Henrique  ")).toEqual(["Pedro", "Henrique"]); });
+  it.each([
+    [["Jo\u00e3o Silva"], ["Jo\u00e3o", "Silva"]],
+    [["Maria Clara Souza"], ["Maria", "Souza"]],
+    [["Ana"], ["Ana", "Ana"]],
+    [["  Pedro  Henrique  "], ["Pedro", "Henrique"]],
+    [[""], ["", ""]],
+    [["   "], ["", ""]],
+    [["A B C D"], ["A", "D"]],
+    [["   Ana   "], ["Ana", "Ana"]],
+  ])("caso", (args: any[], esperado: any) => {
+    const resultado = primeiroUltimoNome(...(args as Parameters<typeof primeiroUltimoNome>));
+    expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));
+  });
 });

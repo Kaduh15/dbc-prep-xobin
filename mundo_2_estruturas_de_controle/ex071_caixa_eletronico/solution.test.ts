@@ -1,17 +1,24 @@
-import { describe, it, expect } from 'vitest';
-import { caixaEletronico } from './solution';
+import { describe, it, expect } from "vitest";
+import { caixaEletronico } from "./solution";
 
-describe('caixaEletronico', () => {
-  it('caso 1', () => {
-    expect(caixaEletronico(188)).toEqual({100: 1, 50: 1, 20: 1, 10: 1, 5: 1, 2: 1, 1: 1});
-  });
-  it('caso 2', () => {
-    expect(caixaEletronico(650)).toEqual({100: 6, 50: 1, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0});
-  });
-  it('caso 3', () => {
-    expect(caixaEletronico(30)).toEqual({100: 0, 50: 0, 20: 1, 10: 1, 5: 0, 2: 0, 1: 0});
-  });
-  it('caso 4', () => {
-    expect(caixaEletronico(0)).toEqual({100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0});
+describe("caixaEletronico", () => {
+  it.each([
+    [[188], {100: 1, 50: 1, 20: 1, 10: 1, 5: 1, 2: 1, 1: 1}],
+    [[650], {100: 6, 50: 1, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0}],
+    [[30], {100: 0, 50: 0, 20: 1, 10: 1, 5: 0, 2: 0, 1: 0}],
+    [[0], {100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0}],
+    [[100], {100: 1, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0}],
+    [[50], {100: 0, 50: 1, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0}],
+    [[20], {100: 0, 50: 0, 20: 1, 10: 0, 5: 0, 2: 0, 1: 0}],
+    [[10], {100: 0, 50: 0, 20: 0, 10: 1, 5: 0, 2: 0, 1: 0}],
+    [[5], {100: 0, 50: 0, 20: 0, 10: 0, 5: 1, 2: 0, 1: 0}],
+    [[2], {100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 1, 1: 0}],
+    [[1], {100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 1}],
+    [[8], {100: 0, 50: 0, 20: 0, 10: 0, 5: 1, 2: 1, 1: 1}],
+    [[151], {100: 1, 50: 1, 20: 0, 10: 0, 5: 0, 2: 0, 1: 1}],
+    [[999], {100: 9, 50: 1, 20: 2, 10: 0, 5: 1, 2: 2, 1: 0}],
+  ])("caso", (args: any[], esperado: any) => {
+    const resultado = caixaEletronico(...args);
+    expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));
   });
 });

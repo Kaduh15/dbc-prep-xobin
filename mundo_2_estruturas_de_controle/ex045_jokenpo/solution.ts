@@ -1,3 +1,3 @@
 export function jokenpo(jogadaUsuario: string, jogadaComputador: string): string {
-  throw new Error("NotImplemented");
+  throw new Error("Not implemented");
 }

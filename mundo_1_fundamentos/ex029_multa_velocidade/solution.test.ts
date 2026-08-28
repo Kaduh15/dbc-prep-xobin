@@ -2,10 +2,20 @@ import { describe, it, expect } from "vitest";
 import { multaVelocidade } from "./solution";
 
 describe("multaVelocidade", () => {
-  it("limite", () => { expect(multaVelocidade(80)).toBe(0.0); });
-  it("umAcima", () => { expect(multaVelocidade(81)).toBe(7.0); });
-  it("noventa", () => { expect(multaVelocidade(90)).toBe(70.0); });
-  it("duzentos", () => { expect(multaVelocidade(200)).toBe(840.0); });
-  it("abaixo", () => { expect(multaVelocidade(79.9)).toBe(0.0); });
-  it("negativo", () => { expect(multaVelocidade(-5)).toBe(0.0); });
+  it.each([
+    [[80], 0.0],
+    [[81], 7.0],
+    [[90], 70.0],
+    [[200], 840.0],
+    [[79.9], 0.0],
+    [[-5], 0.0],
+    [[0], 0.0],
+    [[81.5], 10.5],
+    [[80.5], 3.5],
+    [[100], 140.0],
+    [[79], 0.0],
+  ])("caso", (args: any[], esperado: any) => {
+    const resultado = multaVelocidade(...(args as Parameters<typeof multaVelocidade>));
+    expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));
+  });
 });

@@ -23,11 +23,33 @@ Crie um programa que leia vários números inteiros pelo teclado. No final da ex
     estatisticas([5, 5, 5, 5]) -> (5.0, 5, 5)
 ```
 
-## Restrições / Casos de Borda
+## Casos de Teste (todos, incluindo extremos)
 
-- A média é a soma dividida pela quantidade de elementos (ponto flutuante).
-- Com lista vazia, retorne ``(0.0, 0, 0)``.
-- Maior e menor são os valores extremos da lista.
+```python
+    ([7, 5, 8, 3],) -> (5.75, 8, 3),
+    ([10],) -> (10.0, 10, 10),
+    ([2, 9, 4],) -> (5.0, 9, 2),
+    ([5, 5, 5, 5],) -> (5.0, 5, 5),
+    ([-5, 0, 5],) -> (0.0, 5, -5),
+    ([7, 7, 7],) -> (7.0, 7, 7),
+    ([3],) -> (3.0, 3, 3),
+    ([],) -> (0.0, 0, 0)
+```
+
+## Edge Cases / Extremos
+
+- Média é a soma dividida pela quantidade (ponto flutuante).
+- Lista vazia -> ``(0.0, 0, 0)``.
+- Lista com 1 elemento -> média = maior = menor.
+- Valores negativos e todos iguais também são cobertos pelos extremos.
+
+## Abordagem / Dica
+
+Se vazio, devolva o caso neutro. Caso contrário, some todos e divida pela quantidade para a média e use um único passe (ou ``max``/``min``) para os extremos.
+
+## Complexidade
+
+Tempo ``O(n)``; espaço ``O(1)``.
 
 ## Assinatura Canônica
 
@@ -50,3 +72,5 @@ export function estatisticas(numeros: number[]): [number, number, number] {
 ```
 
 > A função é **pura e determinística**: não usa ``input()`` nem ``print()``. A entrada via terminal e a saída na tela ficam fora da função testável.
+
+> Stub para editar: `ex065_media_maior_menor/solution_ex065_media_maior_menor.py` (Python) e `solution.ts` (TS).

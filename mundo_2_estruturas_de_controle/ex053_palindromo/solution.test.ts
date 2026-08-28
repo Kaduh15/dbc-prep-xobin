@@ -10,7 +10,13 @@ describe("ehPalindromo", () => {
     ["Roma me tem amor", true],
     ["banana", false],
     ["palindromo", false],
-  ])("f(%j) -> %o", (frase, esperado) => {
-    expect(ehPalindromo(frase)).toBe(esperado);
+    ["ovo", true],
+    ["php", true],
+    ["reviver", true],
+    ["casa", false],
+    ["", true],
+  ])("f(...) -> %j",
+    (frase, esperado) => {
+      expect(ehPalindromo(frase)).toBe(esperado);
+    });
   });
-});

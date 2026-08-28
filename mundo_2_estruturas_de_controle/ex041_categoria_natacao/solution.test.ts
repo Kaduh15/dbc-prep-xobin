@@ -2,22 +2,21 @@ import { describe, it, expect } from "vitest";
 import { categoriaNatacao } from "./solution";
 
 describe("categoriaNatacao", () => {
-  it('categoriaNatacao(9)', () => {
-    expect(categoriaNatacao(9)).toEqual('Mirim');
-  });
-  it('categoriaNatacao(14)', () => {
-    expect(categoriaNatacao(14)).toEqual('Infantil');
-  });
-  it('categoriaNatacao(17)', () => {
-    expect(categoriaNatacao(17)).toEqual('Junior');
-  });
-  it('categoriaNatacao(19)', () => {
-    expect(categoriaNatacao(19)).toEqual('Junior');
-  });
-  it('categoriaNatacao(20)', () => {
-    expect(categoriaNatacao(20)).toEqual('Senior');
-  });
-  it('categoriaNatacao(25)', () => {
-    expect(categoriaNatacao(25)).toEqual('Master');
+  it.each([
+    [[9], "Mirim"],
+    [[14], "Infantil"],
+    [[17], "Junior"],
+    [[19], "Junior"],
+    [[20], "Senior"],
+    [[25], "Master"],
+    [[0], "Mirim"],
+    [[5], "Mirim"],
+    [[8], "Mirim"],
+    [[10], "Infantil"],
+    [[15], "Junior"],
+    [[21], "Master"],
+    [[30], "Master"],
+  ] as [number[], string][])("caso %#", (args, esperado) => {
+    expect(categoriaNatacao(args[0])).toEqual(esperado);
   });
 });
