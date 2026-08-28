@@ -12,15 +12,14 @@ Você escolhe a linguagem: **implemente a função no stub e rode os testes loca
 
 ```
 lógica-prep/
-├── mundo_1_fundamentos/                # lote inicial: Curso em Vídeo (Guanabara), acessos 001-035
-│   └── ex001_ola_mundo/
-│       ├── README.md                   # spec do exercício (Descrição, Parâmetros, Retorno, Exemplos, Restrições)
-│       ├── solution.py + test_solution.py
-│       └── solution.ts + solution.test.ts
+├── mundo_1_fundamentos/                # Curso em Vídeo (Guanabara), exercícios 001-035
 ├── mundo_2_estruturas_de_controle/     # Curso em Vídeo (Guanabara), exercícios 036-071
 ├── logica/                              # exercícios clássicos de lógica/raciocínio (FizzBuzz, Two Sum, palíndromo…)
+├── vem_ser_dbc/                         # espelha a prova Xobin do Vem Ser DBC (questões vazadas: Sudoku 4x4, prazo por pesos, Fibonacci decrescente, frequência; + temas de alta prioridade)
 └── README.md
 ```
+
+Cada exercício tem 5 arquivos: `README.md` (spec pt-BR com Edge Cases/Abordagem/Complexidade), `solution_<exercício>.py` + `test_<exercício>.py` (Pytest), `solution.ts` + `solution.test.ts` (Vitest). Nomes **únicos por exercício** para o `pytest` rodar a suíte toda.
 
 > Pode criar novas pastas temáticas (ex.: `logica/`, `algoritmos/`, `strings/`, `matematica/`) e adicionar qualquer exercício de lógica que quiser — é só seguir o mesmo padrão de pasta.
 
