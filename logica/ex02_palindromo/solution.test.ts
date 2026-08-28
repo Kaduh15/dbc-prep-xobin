@@ -3,13 +3,14 @@ import { palindromo } from "./solution";
 
 describe("palindromo", () => {
   it.each([
-    [["ana"], true],
-    [["hello"], false],
+    [["arara"], true],
     [["A man a plan a canal Panama"], true],
+    [["hello"], false],
     [[""], true],
-    [["anA"], true],
-    [["never odd or even"], true],
-    [["java"], false]
+    [["Ana"], true],
+    [["12321"], true],
+    [["a"], true],
+    [["ab"], false],
 ])("caso", (args: any[], esperado: any) => {
     const resultado = palindromo(...(args as []));
     expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));

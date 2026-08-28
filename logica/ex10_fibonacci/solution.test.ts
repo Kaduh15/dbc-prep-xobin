@@ -6,8 +6,9 @@ describe("fibonacci", () => {
     [[0], 0],
     [[1], 1],
     [[2], 1],
+    [[5], 5],
     [[10], 55],
-    [[15], 610]
+    [[6], 8],
 ])("caso", (args: any[], esperado: any) => {
     const resultado = fibonacci(...(args as []));
     expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));

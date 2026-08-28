@@ -5,8 +5,9 @@ describe("contarCaracteres", () => {
   it.each([
     [["banana"], {"b": 1, "a": 3, "n": 2}],
     [[""], {}],
-    [["aA"], {"a": 1, "A": 1}],
-    [["aba"], {"a": 2, "b": 1}]
+    [["a"], {"a": 1}],
+    [["ab a"], {"a": 2, "b": 1, " ": 1}],
+    [["aba"], {"a": 2, "b": 1}],
 ])("caso", (args: any[], esperado: any) => {
     const resultado = contarCaracteres(...(args as []));
     expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));

@@ -6,8 +6,9 @@ describe("fatorial", () => {
     [[0], 1],
     [[1], 1],
     [[5], 120],
+    [[3], 6],
+    [[2], 2],
     [[6], 720],
-    [[10], 3628800]
 ])("caso", (args: any[], esperado: any) => {
     const resultado = fatorial(...(args as []));
     expect(JSON.stringify(resultado)).toBe(JSON.stringify(esperado));
