@@ -1,3 +1,12 @@
 export function somaDigitos(n: number): number {
-  throw new Error("Not implemented");
+  const valorSomado = n.toString()
+    .replace('-', '')
+    .split('')
+    .reduce((acc, curr) => {
+      acc += Number(curr)
+
+      return acc
+    }, 0)
+
+  return valorSomado
 }
